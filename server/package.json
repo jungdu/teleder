@@ -1,0 +1,8 @@
+{
+  "name": "teleder",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "nodemon --exec mocha -R min"
+  }
+}
