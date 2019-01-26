@@ -14,7 +14,6 @@ const mutation = new GraphQLObjectType({
         category: {type: GraphQLString},
         from: {type: GraphQLString},
         author: {type: GraphQLString},
-        link: {type: GraphQLString},
       },
       resolve(parentValue, {content, category, from, author, link}){
         return (new Quote({content, category, from, author, link})).save()
@@ -36,6 +35,20 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parentValue, {id}){
         return Quote.findByIdAndRemove(id)
+      }
+    },
+    updateQuote: {
+      type: QuoteType,
+      args: {
+        id: {type: new GraphQLNonNull(GraphQLID)},
+        content: {type: new GraphQLNonNull(GraphQLString)},
+        category: {type: GraphQLString},
+        from: {type: GraphQLString},
+        author: {type: GraphQLString},
+        link: {type: GraphQLString}
+      },
+      resolve(parentValue, {id, content, category, from, author}){
+        return Quote.findByIdAndUpdate(id, {content, category, form, author})
       }
     }
   }

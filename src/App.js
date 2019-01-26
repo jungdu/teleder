@@ -1,28 +1,39 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import query from './queries/fetchQuotes';
+import { graphql } from 'react-apollo';
 
 class App extends Component {
+
+  renderQuotes(){
+    console.log(this.props.data)
+    if(!this.props.data.quotes) return <li>No Data</li>
+
+    const quotes = this.props.data.quotes.map((quote, idx) => {
+      return (
+        <li key={idx} quote_id={quote.id}>
+          {quote.content}
+        </li>
+      )
+    });
+    console.log(quotes);
+    return quotes;
+  }
+
   render() {
+    console.log(this.props)
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          Hello World
         </header>
+        <ul>
+          {this.renderQuotes()}
+        </ul>
       </div>
     );
   }
 }
 
-export default App;
+export default graphql(query)(App);
