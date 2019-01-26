@@ -9,6 +9,10 @@ import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import QuoteList from "./components/QuoteList";
+import QuoteDetail from "./components/QuoteDetail";
+import QuoteCreate from "./components/QuoteCreate";
 
 const httpLink = new HttpLink({ uri: 'http://localhost:4000/graphql' });
 
@@ -33,10 +37,16 @@ const client = new ApolloClient({
   });
 
 const RootComp = () => (
+  <Router>
     <ApolloProvider client={client}>
-      <App> 
+      <App>
+        <Route path='/' exact component={QuoteList} />
+        <Route path='/list' component={QuoteList} />
+        <Route path='/detail/:quoteId' component={QuoteDetail} />
+        <Route path='/create' component={QuoteCreate} />
       </App>
     </ApolloProvider>
+  </Router>
 );
 
 ReactDOM.render(<RootComp />, document.getElementById('root'));

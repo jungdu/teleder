@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "nodemon index",
     "test": "nodemon --exec mocha -R min"
   }
 }

@@ -15,6 +15,10 @@ const QuoteSchema = new Schema({
     type: Number,
     default: 0
   },
+  from: {           // 출처
+    type: String,
+    trim: true
+  },   
   img: {            // 이미지 링크
     type: String,
     trim: true
@@ -27,10 +31,6 @@ const QuoteSchema = new Schema({
     type: String,
     trim: true
   },   
-  from: {           // 출처
-    type: String,
-    trim: true
-  },     
   link: {           // 관련 링크
     type: String,
     trim: true
