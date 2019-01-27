@@ -1,70 +1,10 @@
 const assert = require('assert');
 const app = require('../server')
 const {request} = require('graphql-request'); 
-
+const {addLike, addQuote, searchQuote, searchQuotes, deleteQuote} = require('./queries');
 // GraphQL 서버의 request, response 를 체크하는 테스트
 // 테스트를 실행하기 이전에 서버를 실행해야함.
 const serverUrl = 'http://localhost:4000/graphql';
-
-const searchQuote = `
-  query($id: ID!){
-    quote(id: $id){
-      id
-      content
-      insert_dt
-      likes
-      category
-    }
-  }
-`
-
-const searchQuotes = `
-  query{
-    quotes{
-      id
-      insert_dt
-      content
-      from
-      likes
-    } 
-  }
-`
-
-const addLike = `
-  mutation($id: ID!){
-    addLike(id: $id){
-      id
-      content
-      insert_dt
-      likes
-      category
-    }
-  }
-`
-
-const addQuote = `
-  mutation($content: String!, $from:String){
-    addQuote(content: $content, from: $from){
-      id
-      content
-      insert_dt
-      likes
-      category
-    }
-  }
-`
-
-const deleteQuote = `
-  mutation($id:ID!){
-    deleteQuote(id:$id){
-      id
-      content
-      insert_dt
-      likes
-      category
-    }
-  }
-`
 
 describe('GraphQL API test', () => {
   let quotes;
