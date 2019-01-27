@@ -5,7 +5,8 @@ const Quote = require('../models/quote');
 mongoose.connect('mongodb://localhost/teleder', { useNewUrlParser: true });
 mongoose.connection
     .once('open', () =>{
-      Quote.insertMany(data)
+      Quote.remove({})
+        .then(() => Quote.insertMany(data))
         .then(result => {
           console.log(result);
         });
