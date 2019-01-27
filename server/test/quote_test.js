@@ -2,8 +2,19 @@ const assert = require('assert');
 const mongoose = require('mongoose');
 const Quote = require('../models/quote');
 
-describe('quote model test', () => {
-
+// mongoose 모델 생성할 때 모델이 재대로 동작하는지 테스트하는 파일
+// server가 실행 상태에서 테스트를 실행하면 test database가 아닌
+// production database의 데이터에 영향을 미칠 수 있다.
+describe.skip('quote model test', () => {
+  before(done => {
+    mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+    mongoose.connection
+      .once('open', () => done())
+      .on('error', error => {
+        console.warn('Warning', error)
+      });
+  });
+  
   let seuss;
 
   beforeEach(done => {
@@ -31,4 +42,4 @@ describe('quote model test', () => {
         done();
       })
   })
-})
+});

@@ -12,7 +12,7 @@ const QuoteType = new GraphQLObjectType({
     insert_dt: {
       type: GraphQLDateTime
     },
-    likes: {type: GraphQLString},
+    likes: {type: GraphQLInt},
     category: {type: GraphQLString},
     author: {type: GraphQLString},
     from: {type: GraphQLString},
