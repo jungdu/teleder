@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  AddLike($id: ID!){
-    addLike(id: $id){
+  mutation($content: String!, $from:String){
+    addQuote(content: $content, from: $from){
       id
       content
       insert_dt

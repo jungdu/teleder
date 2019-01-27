@@ -1,6 +1,27 @@
 .header{
   padding: 0 20px;
 }
+.align-right{
+  text-align: right;
+}
+
+/* List Page */
 .quote-li{
   margin-bottom: 5px;
+}
+
+.list-quote-content{
+  color: #444;
+}
+.list-quote-from{
+  font-style:italic;
+}
+
+/* Create Page */
+.quote-form{
+  margin-top: 25px;
+}
+.quote-form > h5 {
+  margin-bottom: 30px;
+  color: #555;
 }

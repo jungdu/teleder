@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  DeleteQuote($id: ID!){
-    deleteQuote(id: $id){
+  mutation($id: ID!){
+    addLike(id: $id){
       id
       content
       insert_dt

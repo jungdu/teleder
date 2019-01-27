@@ -12,14 +12,14 @@ class quoteList extends Component {
       path = "/detail/"+ quote.id
       return (
         <li key={idx} className="row quote-li">
-          <Link to={path} className="col s12 m12">
+          <div to={path} className="col s12 m12">
             <div className="card blue lighten-5 black-text">
               <div className="card-content">
-                <p>{quote.content}</p>
-                <p className="right"> - {quote.from}</p>
+                <Link to={path} className="list-quote-content">{quote.content}</Link>
+                <p className="align-right list-quote-from"> - {quote.from}</p>
               </div>
             </div>
-          </Link>
+          </div>
         </li>
       )
     })

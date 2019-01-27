@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-export class QuoteCreate extends Component {
+import mutation from '../mutation/addQuote';
+import query from '../queries/fetchQuotes';
+import QuoteForm from './QuoteForm';
+import history from '../history';
 
+export class QuoteCreate extends Component {
   constructor(props) {
     super(props);
-    this.state = {name: 'new name'}
+    this.state = {
+      errors: []
+    }
+  }
+
+  onSubmit({content, from, category}){
+    this.props.mutate({
+      variables: {content, from, category},
+      refetchQueries: [{query}]
+    });
+    history.push('/list');
   }
 
   render(){
     return(
-      <div class="row">
-        <div class="input-field col s6">
-          <input 
-            value={this.state.name} 
-            onChange={(event)=> this.setState({name: event.target.value})}
-          />
-          <label class="active" for="first_name2">First Name</label>
-        </div>
+      <div className="row">
+        <QuoteForm onSubmit={this.onSubmit.bind(this)}/>
       </div>
     )
   }
 }
-export default QuoteCreate;
+
+export default graphql(mutation)(QuoteCreate);

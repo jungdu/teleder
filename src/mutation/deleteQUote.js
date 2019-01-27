@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  AddQuote($content: String!, $from:String){
-    addQuote(content: $content, from: $from){
+  mutation($id: ID!){
+    deleteQuote(id: $id){
       id
       content
       insert_dt
