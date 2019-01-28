@@ -16,7 +16,7 @@ class quoteList extends Component {
             <div className="card blue lighten-5 black-text">
               <div className="card-content">
                 <Link to={path} className="list-quote-content">{quote.content}</Link>
-                <p className="align-right list-quote-from"> - {quote.from}</p>
+                <p className="right-align list-quote-from"> - {quote.from}</p>
               </div>
             </div>
           </div>

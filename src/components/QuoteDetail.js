@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import fetchQuote from '../queries/fetchQuote';
 import { graphql } from 'react-apollo';
+import DetailHeader from './DetailHeader';
 
 export class QuoteDetail extends Component {
 
@@ -10,22 +11,60 @@ export class QuoteDetail extends Component {
     if(!quote) return (<div> No Detail Data </div>);
 
     return (
-      <div>
-        <p>{quote.content}</p>
-        <p>{quote.from}</p>
-        <p>{quote.insert_dt}</p>
-        <p>{quote.likes}</p>
-      </div>
+      <table className="highlight">
+        <tbody>
+          <tr>
+            <th>
+              Content
+            </th>
+            <td>{quote.content}</td>
+          </tr>
+          <tr>
+            <th>
+              From
+            </th>
+            <td>
+              <p>{quote.from}</p>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              Insert Date Time
+            </th>
+            <td>
+              {quote.insert_dt}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              Likes
+            </th>
+            <td>
+              <p>{quote.likes}</p>
+            </td>
+          </tr>
+          <tr>
+            <th>MP3 Link</th>
+            <td>It isn't Converted yet</td>
+          </tr>
+          <tr>
+            <th>Processing</th>
+            <td className="valign-wrapper processing">
+              False <button className="btn green"> Convert </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     );
   }
 
   render() {
-    console.log(this.props.match);
-    console.log(this.props.data);
-    
     return (
-      <div>
+      <div className="row ">
+        <DetailHeader quoteId={this.props.match.params.quoteId}/>
         {this.detailInfo()}
+        <div className="buttons">
+        </div>
       </div>
     )
   }

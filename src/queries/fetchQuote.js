@@ -8,6 +8,7 @@ export default gql`
       insert_dt
       likes
       category
+      from
     }
   }
 `

@@ -1,8 +1,8 @@
 .header{
   padding: 0 20px;
 }
-.align-right{
-  text-align: right;
+.block {
+  display: block
 }
 
 /* List Page */
@@ -24,4 +24,10 @@
 .quote-form > h5 {
   margin-bottom: 30px;
   color: #555;
+}
+
+/* Detail Page */
+.processing{
+  display:flex;
+  justify-content: space-between;
 }

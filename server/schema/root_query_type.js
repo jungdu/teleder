@@ -10,7 +10,7 @@ const RootQuery = new GraphQLObjectType({
     quotes: {
       type: new GraphQLList(QuoteType),
       resolve(){
-        return Quote.find({})
+        return Quote.find({}).sort({insert_dt: -1})
       }
     },
     quote: {
