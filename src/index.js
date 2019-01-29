@@ -34,7 +34,9 @@ const httpLinkWithAuthToken = middlewareAuthLink.concat(httpLink);
 
 const client = new ApolloClient({
     link: httpLinkWithAuthToken,
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      dataIdFromObject: object => object.id,
+    }),
   });
 
 const RootComp = () => (
