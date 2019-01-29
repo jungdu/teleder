@@ -6,6 +6,7 @@ const Polly = new AWS.Polly({
   region: 'us-east-1'
 })
 
+const BucketName = 'pollybuckex';
 const convertToMp3 = (voice, text, fileName) => {
   const params = {
     'Text': text,
@@ -19,7 +20,7 @@ const convertToMp3 = (voice, text, fileName) => {
       }else{
         if(data.AudioStream instanceof Buffer){
           s3.upload({
-            Bucket: 'pollybuckex',
+            Bucket: BucketName,
             Key: fileName + '.mp3',
             Body: data.AudioStream,
             ACL: 'public-read'
@@ -38,6 +39,21 @@ const convertToMp3 = (voice, text, fileName) => {
   })
 }
 
+const deleteObj = (Key) => {
+  const params = {
+    Bucket: BucketName,
+    Key
+  };
+
+  return new Promise((resolve, reject) => {
+    s3.deleteObject(params, function(err, data){
+      if(err) reject(err);
+      else resolve(data);
+    });  
+  });
+}
+
 module.exports = {
-  convertToMp3
+  convertToMp3,
+  deleteObj
 }

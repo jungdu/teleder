@@ -3,9 +3,8 @@ const { GraphQLObjectType, GraphQLString, GraphQLID} = graphql;
 const QuoteType = require('./quote_type');
 const mongoose = require('mongoose')
 const Quote = mongoose.model('quote');
-console.log(QuoteType);
-console.log(QuoteType);
-console.log(QuoteType);
+const {deleteObj} = require('../service/aws_handler');
+
 const S3objType = new GraphQLObjectType({
   name: 'S3objType',
   fields: ()=> ({
@@ -23,5 +22,6 @@ const S3objType = new GraphQLObjectType({
     }
   })
 })
+
 
 module.exports = S3objType;

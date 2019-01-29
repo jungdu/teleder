@@ -36,7 +36,7 @@ const mutation = new GraphQLObjectType({
         id: {type: new GraphQLNonNull(GraphQLID)}
       },
       resolve(parentValue, {id}){
-        return Quote.findByIdAndRemove(id)
+        return Quote.findById(id).then(res => res.remove());
       }
     },
     updateQuote: {

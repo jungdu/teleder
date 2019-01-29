@@ -42,6 +42,12 @@ const QuoteSchema = new Schema({
   }      
 });
 
+QuoteSchema.pre('remove', function(next){
+  const S3obj = mongoose.model('s3obj');
+  S3obj.findById(this.s3obj_id).then(res => res.remove())
+    .then(() => next());
+});
+
 QuoteSchema.statics.addlike = function(id){
   return this.findById(id)
           .then(quote => {
