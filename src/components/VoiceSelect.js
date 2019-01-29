@@ -5,6 +5,7 @@ export class VoiceSelect extends Component {
     return (
       <select value={this.props.voice} onChange={this.props.handleChange} className="voice-select col s5 m7">
       <option value="Ivy">Ivy [English - American]</option>
+      <option value="Seoyeon">Seoyeon [Korean]</option>
       <option value="Joanna">Joanna [English - American]</option>
       <option value="Joey">Joey [English - American]</option>
       <option value="Justin">Justin [English - American]</option>
