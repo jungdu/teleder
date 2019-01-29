@@ -14,7 +14,6 @@ export class QuoteForm extends Component {
 
   onSubmit(event){
     event.preventDefault();
-    console.log('Submit!!!!!!');
     this.props.onSubmit(this.state);
   }
 

@@ -1,18 +1,15 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  query($id: ID!){
-    quote(id: $id){
-      id
+mutation($quoteId:String!, $voice:String){
+    addToMp3(quoteId:$quoteId, voice:$voice){
       content
-      insert_dt
-      likes
-      category
       from
       s3obj{
+        id
         Key
         Location
       }
     }
   }
-`
+`;
