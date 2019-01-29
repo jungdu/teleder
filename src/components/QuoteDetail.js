@@ -2,8 +2,22 @@ import React, { Component } from 'react';
 import fetchQuote from '../queries/fetchQuote';
 import { graphql } from 'react-apollo';
 import DetailHeader from './DetailHeader';
-
+import VoiceSelect from './VoiceSelect'
+import ConvertBtn from './ConvertBtn'
 export class QuoteDetail extends Component {
+
+  constructor(props){
+    super(props);
+    
+    this.state = {
+      voice:'Kimberly'
+    }
+
+  }
+
+  handleChange(event) {
+    this.setState({voice: event.target.value});
+  }
 
   detailInfo(){
     const { quote, loading } = this.props.data;
@@ -49,8 +63,10 @@ export class QuoteDetail extends Component {
           </tr>
           <tr>
             <th>Processing</th>
-            <td className="valign-wrapper processing">
-              False <button className="btn green"> Convert </button>
+            <td className="processing row">
+              <p className="col s2 voice-p">Voice:</p>
+              <VoiceSelect voice={this.state.voice} handleChange={this.handleChange.bind(this)}/>
+              <ConvertBtn voice={this.state.voice} content={quote.content} quoteId={quote.id}/>
             </td>
           </tr>
         </tbody>

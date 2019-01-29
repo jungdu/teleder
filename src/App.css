@@ -28,6 +28,10 @@
 
 /* Detail Page */
 .processing{
-  display:flex;
-  justify-content: space-between;
+}
+.voice-select{
+  display: block;
+}
+.voice-p{
+  word-break: keep-all;
 }
