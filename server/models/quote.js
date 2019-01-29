@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const {convertToMp3} = require('../service/aws_handler');
 
 const QuoteSchema = new Schema({
   content: {        // 글 내용
@@ -34,6 +35,10 @@ const QuoteSchema = new Schema({
   link: {           // 관련 링크
     type: String,
     trim: true
+  },
+  s3obj_id: {       // 음성 파일 정보
+    type: Schema.Types.ObjectId,
+    ref: 's3obj'
   }      
 });
 
@@ -43,6 +48,27 @@ QuoteSchema.statics.addlike = function(id){
             quote.likes = quote.likes + 1;
             return quote.save();
           });
+}
+
+QuoteSchema.statics.addVoice = function(id, voice){
+  const S3obj = mongoose.model('s3obj');
+  let quote, s3obj;
+  return this.findById(id)
+    .then(res => {
+      quote = res;
+      return convertToMp3(voice, quote.content, quote.id)
+    }).then(res => {
+      const {ETag, Location, Key, Bucket} = res;
+      s3obj = new S3obj({ETag, Location, Key, Bucket, quote_id: id});
+      return s3obj.save()
+    }).then(res => {
+      return quote.update({s3obj_id: res.id});
+    }).then(res => {
+      return this.findById(id);
+    }).then(res => {
+      console.log(res);
+      return res;
+    })
 }
 
 const Quote = mongoose.model('quote', QuoteSchema);

@@ -3,6 +3,8 @@ const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLNonNull } = graphql;
 const mongoose = require('mongoose');
 const Quote = mongoose.model('quote');
 const QuoteType = require('./quote_type');
+const S3objType = require('./s3obj_type');
+const { quoteToMp3 } = require('../service/aws_handler.js')
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -49,6 +51,16 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parentValue, {id, content, category, from, author}){
         return Quote.findByIdAndUpdate(id, {content, category, form, author})
+      }
+    },
+    addToMp3: {
+      type: QuoteType,
+      args: {
+        quoteId: {type: GraphQLString},
+        voice: {type: GraphQLString}
+      },
+      resolve(parentValue, {quoteId, voice}){
+        return Quote.addVoice(quoteId, voice);
       }
     }
   }
