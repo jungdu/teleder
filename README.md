@@ -54,15 +54,11 @@ React 실행
 ### `npm test`
 Mocha를 활용한 서버 테스트를 실행
 
-### `npm test`
+### `npm run react-test`
 React 테스트 실행
 
 ### `npm run build`
 React 소스를 빌드
-
-### `npm run eject`
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-React를 커스터 마이징
 
 ## Learn More
 
