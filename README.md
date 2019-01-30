@@ -11,7 +11,7 @@
  [AWS S3 요금정책](https://aws.amazon.com/ko/s3/pricing/)
  * AWS-SDK : NodeJS 에서 AWS 서비스를 활용하기 위한 라이브러리.
  * Express & GraphQL : Server API 를 통해 정보를 주고받기 위해 사용하는 Query Language.
- * React & Apollo : GraphQL 서버와 Client를 연동하기 위해서 Apollo 라이브러리를 사용.
+ * React & Apollo : GraphQL 서버와 React를 연동하기 위해서 Apollo 라이브러리를 사용.
  * MongoDB : 오픈소스 문서지향(Document-Oriented) 적 Cross-platform 데이터베이스.
  
 ## 실행 환경 구성 하기
