@@ -4,15 +4,24 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## TEREDER 기능
 다양한 언어로 이루어진 문장들을 등록하고 등록된 문장을 음성 파일로 변환하고 <br>
-사용자가 들을 수 있도록 하는 인터페이스를 제공한다.
+사용자가 들을 수 있도록 하는 인터페이스를 제공한다.   
 
 ## 사용된 기술
- * AWS Polly : 문자열을 음성으로 변환하여 파일 형태로 변환시켜주는 서비스.
- * AWS S3 : Polly를 활용하여 만들어진 파일을 Client로 전송해주는 서비스.
+ * AWS Polly : 문자열을 음성으로 변환하여 파일 형태로 변환시켜주는 서비스.<br> 
+ [AWS Polly 요금정책](https://aws.amazon.com/ko/polly/pricing/)
+ * AWS S3 : Polly를 활용하여 만들어진 파일을 Client로 전송해주는 서비스.<br>
+ [AWS S3 요금정책](https://aws.amazon.com/ko/s3/pricing/)
  * AWS-SDK : NodeJS 에서 AWS 서비스를 활용하기 위한 라이브러리.
  * Express & GraphQL : Server API 를 통해 정보를 주고받기 위해 사용하는 Query Language.
  * React & Apollo : GraphQL 서버와 Client를 연동하기 위해서 Apollo 라이브러리를 사용.
  * MongoDB : 오픈소스 문서지향(Document-Oriented) 적 Cross-platform 데이터베이스.
+ 
+## 실행 환경 구성 하기
+* MongoDB 설치
+* AWS 계정 생성
+* AWS IAM USER 생성 ( S3 권한, Polly 권한 추가 )
+* AWS-CLI 설치 후 생성한 IAM USER 등록 
+* 음성파일을 저장할 AWS S3 버킷 생성
  
 ## 실행 방법
 #### 1) dependency 설치 <br> `npm install`    
